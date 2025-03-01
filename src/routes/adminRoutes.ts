@@ -12,6 +12,11 @@ const {
   deleteCategory,
   createCategory,
 } = require("../controllers/categoryController");
+const {
+  sales,
+  topsales,
+  worstsales,
+} = require("../controllers/salesController");
 
 const adminRouter = Router();
 
@@ -33,15 +38,9 @@ adminRouter.put("/category", updateCategory);
 adminRouter.delete("/category", deleteCategory);
 
 //sales routes
-adminRouter.get(`/sales/:category`, (req, res) => {
-  res.send(`Admin route:list of all sales for category:${req.params.category}`);
-});
-adminRouter.get("/sales/top", (req, res) => {
-  res.send("Admin route:top selling products");
-});
+adminRouter.get(`/sales/:category`, sales);
+adminRouter.get("/sales/top", topsales);
 
-adminRouter.get("/sales/worst", (req, res) => {
-  res.send("Admin route:worst selling products");
-});
+adminRouter.get("/sales/worst", worstsales);
 
 module.exports = adminRouter;
