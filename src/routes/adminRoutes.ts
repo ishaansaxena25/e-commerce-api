@@ -1,5 +1,17 @@
 import { Router } from "express";
-const { signup, login, getProduct } = require("../controllers/adminController");
+const { signup, login } = require("../controllers/adminController");
+const {
+  getProduct,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+} = require("../controllers/productController");
+const {
+  getCategories,
+  updateCategory,
+  deleteCategory,
+  createCategory,
+} = require("../controllers/categoryController");
 
 const adminRouter = Router();
 
@@ -10,29 +22,15 @@ adminRouter.post("/register", signup);
 
 //product routes
 adminRouter.get("/product", getProduct);
-adminRouter.post("/product", (req, res) => {
-  res.send("Admin route:add product");
-});
-adminRouter.put("/product", (req, res) => {
-  res.send("Admin route:update product");
-});
-adminRouter.delete("/product", (req, res) => {
-  res.send("Admin route:delete product");
-});
+adminRouter.post("/product", addProduct);
+adminRouter.put("/product/:id", updateProduct);
+adminRouter.delete("/product", deleteProduct);
 
 //category routes
-adminRouter.get("/category", (req, res) => {
-  res.send("Admin route:list of all categories");
-});
-adminRouter.post("/category", (req, res) => {
-  res.send("Admin route:add category");
-});
-adminRouter.put("/category", (req, res) => {
-  res.send("Admin route:update category");
-});
-adminRouter.delete("/category", (req, res) => {
-  res.send("Admin route:delete category");
-});
+adminRouter.get("/category", getCategories);
+adminRouter.post("/category", createCategory);
+adminRouter.put("/category", updateCategory);
+adminRouter.delete("/category", deleteCategory);
 
 //sales routes
 adminRouter.get(`/sales/:category`, (req, res) => {
