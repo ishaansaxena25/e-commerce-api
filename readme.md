@@ -1,6 +1,6 @@
 APIs to make
 
-Admin route:
+Admin route: (done)
 1./admin/login -
 
 2./admin/dashboard/products -
