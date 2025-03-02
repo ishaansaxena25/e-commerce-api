@@ -35,7 +35,7 @@
 - Authorization Handling (admin, user)
 - Error Handling (done)
 
-## Database Configuration
+## Data Models
 
 - **User Table**: `id`, `name`, `email`, `password`
 - **Admin Table**: `id`, `name`, `email`, `password`
