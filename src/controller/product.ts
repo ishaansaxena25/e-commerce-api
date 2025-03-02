@@ -42,9 +42,8 @@ const addProduct = async (req: any, res: any) => {
 
 const updateProduct = async (req: any, res: any) => {
   try {
-    const product = await Product.findOne({
-      productId: req.params.id,
-    });
+    const { id } = req.params;
+    const product = await Product.findById(id);
     if (!product) {
       return res.status(400).json({ message: "Product does not exist" });
     } else {
@@ -62,9 +61,8 @@ const updateProduct = async (req: any, res: any) => {
 
 const deleteProduct = async (req: any, res: any) => {
   try {
-    const product = await Product.findOne({
-      productId: req.params.id,
-    });
+    const { id } = req.params;
+    const product = await Product.findById(id);
     if (!product) {
       return res.status(400).json({ message: "Product does not exist" });
     }

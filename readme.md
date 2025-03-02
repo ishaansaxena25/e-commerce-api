@@ -1,37 +1,44 @@
-APIs to make
+## API Endpoints
 
-Admin route:
-1./admin/login - (done)
+### Admin Routes
 
-2./admin/dashboard/products - (done)
+1. **POST** `/admin/login` - Admin login
+2. **POST** `/admin/register` - Register a new admin
 
-3./admin/dashboard/categories -
+3. **GET** `/admin/products` - View products
+4. **POST** `/admin/products` - Add a new product
+5. **PATCH** `/admin/products/:id` - Update a product
+6. **DELETE** `/admin/products/:id` - Delete a product
 
-4./admin/sales[query] -
+7. **GET** `/admin/categories` - View categories
+8. **POST** `/admin/categories` - Add a new category
+9. **PATCH** `/admin/categories/:id` - Update a category
+10. **DELETE** `/admin/categories/:id` - Delete a category
 
-User route: (done)
-1./user/(login,signup)
+11. **GET** `/admin/sales:category` - View sales
+12. **GET** `/admin/sales/top` - View top sales
+13. **GET** `/admin/sales/worst` - View worst sales
 
-2./user/order
+### User Routes
 
-General:
-"/"-> product listing;
+1. **POST** `/user/login` - User login (done)
+2. **POST** `/user/signup` - User signup (done)
+3. **POST** `/user/order` - Place an order
 
-(fix "/" listing)
+### General Routes
 
-add jwt (done)
-connect db (done)
-handle authorization(admin,user) (done)
-implement error handling T-T (done)
+1. **GET** `/` - Product listing
 
-# DB configure: (done)
+## Features
 
-user table (details:id,name,add,user,pass)
+- JWT Authentication
+- Authorization Handling (admin, user)
+- Error Handling (done)
 
-admin table(details:id,name,add,user,pass)
+## Database Configuration
 
-product table(details:id,name,category,sales,owner(admin-id))
-
-order table(detiails:id,product array, buyer(user-id))
-
-manage product sync when placing order. (done)
+- **User Table**: `id`, `name`, `email`, `password`
+- **Admin Table**: `id`, `name`, `email`, `password`
+- **Product Table**: `id`, `name`, `category`, `count`, `sales`, `price`, `description`, `owner (user-id)`
+- **Category Table**: `id`, `name`, `products`
+- **OrderHistory Table**: `id`, `user`, `orderItems`, `date`

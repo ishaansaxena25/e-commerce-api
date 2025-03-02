@@ -31,10 +31,8 @@ const createCategory = async (req: any, res: any) => {
 
 const updateCategory = async (req: any, res: any) => {
   try {
-    const { name } = req.body;
-    const category = await Category.findOne({
-      name,
-    });
+    const { id } = req.params;
+    const category = await Category.findById(id);
     if (!category) {
       return res.status(400).json({ message: "Category does not exist" });
     }
@@ -47,10 +45,8 @@ const updateCategory = async (req: any, res: any) => {
 
 const deleteCategory = async (req: any, res: any) => {
   try {
-    const { name } = req.body;
-    const category = await Category.findOne({
-      name,
-    });
+    const { id } = req.params;
+    const category = await Category.findById(id);
     if (!category) {
       return res.status(400).json({ message: "Category does not exist" });
     }
