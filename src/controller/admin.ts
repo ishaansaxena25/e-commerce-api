@@ -1,5 +1,6 @@
 import Admin from "../model/admin";
 import bcrypt from "bcryptjs";
+const { createTokenForAdmin } = require("../auth/auth");
 
 const signup = async (req: any, res: any) => {
   try {
@@ -34,7 +35,11 @@ const login = async (req: any, res: any) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    res.status(200).json({ message: "Admin logged in successfully" });
+    const token: string = createTokenForAdmin(admin);
+    res
+      .cookie("token", token)
+      .status(200)
+      .json({ message: "Admin logged in successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }

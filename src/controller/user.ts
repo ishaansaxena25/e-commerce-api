@@ -2,7 +2,7 @@ import User from "../model/user";
 import bcrypt from "bcryptjs";
 import Product from "../model/Product";
 import OrderHistory from "../model/orderHistory";
-
+const { createTokenForUser } = require("../auth/auth");
 const register = async (req: any, res: any) => {
   const { name, email, password } = req.body;
   try {
@@ -51,7 +51,8 @@ const login = async (req: any, res: any) => {
         message: "invalid password",
       });
     }
-    res.status(200).json({
+    const token = createTokenForUser(user);
+    res.cookie("token", token).status(200).json({
       message: "Login successful",
     });
   } catch (error) {
@@ -63,8 +64,14 @@ const login = async (req: any, res: any) => {
 };
 
 const placeOrder = async (req: any, res: any) => {
+  if (!req.user.id) {
+    return res.status(400).json({
+      message: "User not found",
+    });
+  }
   const { productId, quantity } = req.body;
   const userId = req.user.id;
+
   const product = await Product.findById(productId);
   if (!product) {
     return res.status(400).json({
@@ -95,6 +102,11 @@ const placeOrder = async (req: any, res: any) => {
 };
 
 const orderHistory = async (req: any, res: any) => {
+  if (!req.user.id) {
+    return res.status(400).json({
+      message: "User not found",
+    });
+  }
   const userId = req.user.id;
   const orders = await OrderHistory.find({ user: userId }).populate("product");
   res.status(200).json({

@@ -15,4 +15,4 @@ const worstsales = async (req: any, res: any) => {
   const products = await Product.find().sort({ sales: 1 });
   res.json(products);
 };
-module.exports = { sales, topsales };
+module.exports = { sales, topsales, worstsales };

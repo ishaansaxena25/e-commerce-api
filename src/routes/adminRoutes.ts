@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { checkforAdmin } from "../middleware/auth";
 const { signup, login } = require("../controllers/adminController");
 const {
   getProduct,
@@ -26,21 +27,21 @@ adminRouter.post("/login", login);
 adminRouter.post("/register", signup);
 
 //product routes
-adminRouter.get("/product", getProduct);
-adminRouter.post("/product", addProduct);
-adminRouter.put("/product/:id", updateProduct);
-adminRouter.delete("/product", deleteProduct);
+adminRouter.get("/product", checkforAdmin, getProduct);
+adminRouter.post("/product", checkforAdmin, addProduct);
+adminRouter.put("/product/:id", checkforAdmin, updateProduct);
+adminRouter.delete("/product", checkforAdmin, deleteProduct);
 
 //category routes
-adminRouter.get("/category", getCategories);
-adminRouter.post("/category", createCategory);
-adminRouter.put("/category", updateCategory);
-adminRouter.delete("/category", deleteCategory);
+adminRouter.get("/category", checkforAdmin, getCategories);
+adminRouter.post("/category", checkforAdmin, createCategory);
+adminRouter.put("/category", checkforAdmin, updateCategory);
+adminRouter.delete("/category", checkforAdmin, deleteCategory);
 
 //sales routes
-adminRouter.get(`/sales/:category`, sales);
-adminRouter.get("/sales/top", topsales);
+adminRouter.get(`/sales/:category`, checkforAdmin, sales);
+adminRouter.get("/sales/top", checkforAdmin, topsales);
 
-adminRouter.get("/sales/worst", worstsales);
+adminRouter.get("/sales/worst", checkforAdmin, worstsales);
 
 module.exports = adminRouter;

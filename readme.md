@@ -1,9 +1,9 @@
 APIs to make
 
 Admin route:
-1./admin/login -
+1./admin/login - (done)
 
-2./admin/dashboard/products -
+2./admin/dashboard/products - (done)
 
 3./admin/dashboard/categories -
 
@@ -19,10 +19,10 @@ General:
 
 (fix "/" listing)
 
-add jwt
-connect db
-handle authorization(admin,user)
-implement error handling T-T
+add jwt (done)
+connect db (done)
+handle authorization(admin,user) (done)
+implement error handling T-T (done)
 
 # DB configure: (done)
 
