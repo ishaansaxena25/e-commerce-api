@@ -1,6 +1,5 @@
 APIs to make
 
-<<<<<<< HEAD
 Admin route:
 1./admin/login - (done)
 
